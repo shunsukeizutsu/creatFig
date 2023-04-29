@@ -1,7 +1,7 @@
 #include "creatfig.hpp"
 
 PlotData::PlotData()            // default
-{                              // グラフの詳細設定、文字のフォント等
+{                               // グラフの詳細設定、文字のフォント等
     gp = popen("gnuplot", "w"); // シェル起動
     fprintf(gp, "set grid\n");
     fprintf(gp, "set size ratio -1\n\n");
@@ -11,7 +11,7 @@ PlotData::PlotData()            // default
     fprintf(gp, "set xlabel offset 0,-1\n\n");
     fprintf(gp, "set ylabel offset -4,0\n\n");
     fprintf(gp, "set tics font 'Arial,15'\n\n");
-    fprintf(gp, "set grid linewidth 1.5\n\n");
+    fprintf(gp, "set grid linewidth 1.0\n\n");
 }
 PlotData::PlotData(double xmax, double xmin, double yamx, double ymin) // グラフの範囲を設定したい場合
 {
@@ -31,6 +31,12 @@ PlotData::~PlotData()
 {
     pclose(gp);
 }
+void PlotData::settingtics(int xtics,int ytics)
+{
+    fprintf(gp,"set xtics %d",xtics);
+    fprintf(gp,"set ytics %d",ytics);
+    fprintf(gp,"replot");
+}
 void PlotData::saveData2D(double Xdata, double Ydata) // プロットしたいデータ->vectorへ
 {
     plot_data tmp;
@@ -38,16 +44,19 @@ void PlotData::saveData2D(double Xdata, double Ydata) // プロットしたい�
     tmp.ydata = Ydata;
     Vdata.push_back(tmp);
 }
+void PlotData::XYlabel(char *x, char *y)
+{
+    fprintf(gp, "set xlabel '%s'\n\n", x);
+    fprintf(gp, "set ylabel '%s'\n\n", y);
+}
 void PlotData::PrintFig2D(void) // vector->２次元で一つのグラフ生成
 {
-    printf( "\x1b[32m\x1b[1m%s\x1b[39m\x1b[0m\n", "Start Plot PrintFigure 2D" );
-    fprintf(gp, "set xlabel 'xlabelname'\n\n");
-    fprintf(gp, "set ylabel 'ylabelname '\n\n");
+    printf("\x1b[32m\x1b[1m%s\x1b[39m\x1b[0m\n", "Start Plot PrintFigure 2D");
     fprintf(gp, "p ");
     fprintf(gp, " '-' pt 7 ps 1 lc rgb 'red' t \"\" ");
     for (int i = 0; i < Vdata.size(); i++)
     {
-        //printf("%f %f\n", Vdata[i].xdata, Vdata[i].ydata);
+        // printf("%f %f\n", Vdata[i].xdata, Vdata[i].ydata);
         fprintf(gp, "%f %f\n", Vdata[i].xdata, Vdata[i].ydata);
     }
     fprintf(gp, "e\n");
@@ -64,8 +73,6 @@ void PlotData::saveData2Dx2(double Xdata, double Ydata, double Xdata2, double Yd
 }
 void PlotData::PrintFig2Dx2(void) // vector->２次元で2つのグラフ生成
 {
-    fprintf(gp, "set xlabel 'xlabelname'\n\n");
-    fprintf(gp, "set ylabel 'ylabelname '\n\n");
     fprintf(gp, "p ");
     fprintf(gp, " '-' pt 7 ps 1 lc rgb 'red' t 'notitle', ");
     fprintf(gp, " '-' pt 7 ps 1 lc rgb 'blue' t 'notitle2' ");
@@ -97,8 +104,6 @@ void PlotData::saveData2Dx3(double Xdata, double Ydata, double Xdata2, double Yd
 }
 void PlotData::PrintFig2Dx3(void) // vector->２次元で3つのグラフ生成
 {
-    fprintf(gp, "set xlabel 'xlabelname'\n\n");
-    fprintf(gp, "set ylabel 'ylabelname '\n\n");
     fprintf(gp, "p ");
     fprintf(gp, " '-' pt 7 ps 1 lc rgb 'red' t 'notitle', ");
     fprintf(gp, " '-' pt 7 ps 1 lc rgb 'blue' t 'notitle2', ");
@@ -106,28 +111,31 @@ void PlotData::PrintFig2Dx3(void) // vector->２次元で3つのグラフ生成
 
     for (int i = 0; i < Vdata.size(); i++)
     {
-        // printf("%f %f\n", Vdata[i].xdata, Vdata[i].ydata);
         fprintf(gp, "%f %f\n", Vdata[i].xdata, Vdata[i].ydata);
     }
     fprintf(gp, "e\n");
 
     for (int j = 0; j < Vdata.size(); j++)
     {
-        // printf("%f %f\n", Vdata[j].xdata2, Vdata[j].ydata2);
         fprintf(gp, "%f %f\n", Vdata[j].xdata2, Vdata[j].ydata2);
     }
     fprintf(gp, "e\n");
 
     for (int k = 0; k < Vdata.size(); k++)
     {
-        // printf("%f %f\n", Vdata[j].xdata2, Vdata[j].ydata2);
         fprintf(gp, "%f %f\n", Vdata[k].xdata3, Vdata[k].ydata3);
     }
     fprintf(gp, "e\n");
 
     fflush(gp);
 }
-void PlotData::saveData3D(double Xdata, double Ydata,double Zdata)//プロットしたいデータ->vectorへ
+void PlotData::XYZlabel(char *x, char *y, char *z)
+{
+    fprintf(gp, "set xlabel '%s'\n\n", x);
+    fprintf(gp, "set ylabel '%s'\n\n", y);
+    fprintf(gp, "set zlabel '%s'\n\n", z);
+}
+void PlotData::saveData3D(double Xdata, double Ydata, double Zdata) // プロットしたいデータ->vectorへ
 {
     plot_data tmp;
     tmp.xdata = Xdata;
@@ -135,17 +143,17 @@ void PlotData::saveData3D(double Xdata, double Ydata,double Zdata)//プロット
     tmp.zdata = Zdata;
     Vdata.push_back(tmp);
 }
-void PlotData::PrintFig3D(void)//vector->２次元で一つのグラフ生成
+void PlotData::PrintFig3D(void) // vector->２次元で一つのグラフ生成
 {
     fprintf(gp, "set xlabel 'xlabelname'\n\n");
     fprintf(gp, "set ylabel 'ylabelname '\n\n");
     fprintf(gp, "set ylabel 'zlabelname '\n\n");
-    fprintf( gp, "splot " );
+    fprintf(gp, "splot ");
     fprintf(gp, " '-' pt 7 ps 1 lc rgb 'red' t \"\" ");
     for (int i = 0; i < Vdata.size(); i++)
     {
-        printf("%f %f %f\n", Vdata[i].xdata, Vdata[i].ydata,Vdata[i].zdata);
-        fprintf(gp, "%f %f %f\n", Vdata[i].xdata, Vdata[i].ydata,Vdata[i].zdata);
+        printf("%f %f %f\n", Vdata[i].xdata, Vdata[i].ydata, Vdata[i].zdata);
+        fprintf(gp, "%f %f %f\n", Vdata[i].xdata, Vdata[i].ydata, Vdata[i].zdata);
     }
     fprintf(gp, "e\n");
     fflush(gp);

@@ -12,38 +12,47 @@ static int gShutOff = 0;
 static void setSigInt(void);
 static void Terminate(void);
 
+static char XLabelname[256 / 2] = "xlabelll";
+static char YLabelname[256 / 2] = "table";
+
 int main(void)
 {
-    PlotData PD2;//defalut
-    //PlotData PD(100.0,0.0,100.0,0.0);//範囲指定
-    
+    PlotData PD2; // defalut
+    // PlotData PD(100.0,0.0,100.0,0.0);//範囲指定
 
     try
     {
         setSigInt();
-        double y=0.0;
-        double y2=0.0;
-        double y3=0.0;
-        double x=2.0;
-        double z=0.0;
+
+        double y = 0.0;
+        double y2 = 0.0;
+        double y3 = 0.0;
+        double x = 2.0;
+        double z = 0.0;
         while (!gShutOff)
         {
-            y=x;
-            y2=3*x;
-            y3=4*x;
-            z=x+y;
-            //PD.saveData2D(x,y);
-            PD2.saveData2D(x,y);
+            y = x;
+            y2 = 3 * x;
+            y3 = 4 * x;
+            z = x + y;
+            // PD.saveData2D(x,y);
+
+            PD2.saveData2D(x, y);
             x++;
-            if(y==100)
+            if (y == 100)
             {
                 break;
             }
-            
         }
-        //PD.PrintFig2D();
+        // PD.PrintFig2D();
+        PD2.settingtics(5,5);
+        PD2.XYlabel(XLabelname, YLabelname);
+        
         PD2.PrintFig2D();
         
+
+        // 
+
         while (!gShutOff)
         {
             usleep(1000);
