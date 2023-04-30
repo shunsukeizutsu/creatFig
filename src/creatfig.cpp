@@ -95,8 +95,8 @@ void PlotData::SaveData2Dx2(double Xdata, double Ydata, double Xdata2, double Yd
 void PlotData::PrintFig2Dx2(char *a, char *b) // vector->２次元で2つのグラフ生成
 {
     fprintf(gp, "p ");
-    fprintf(gp, " '-' pt 7 ps 1 lc rgb 'red' t 'notitle', ");
-    fprintf(gp, " '-' pt 7 ps 1 lc rgb 'blue' t 'notitle2' ");
+    fprintf(gp, " '-' pt 7 ps 1 lc rgb 'red' t \'%s\', ",a);
+    fprintf(gp, " '-' pt 7 ps 1 lc rgb 'blue' t \'%s\' ",b);
 
     for (int i = 0; i < Vdata.size(); i++)
     {
@@ -127,9 +127,9 @@ void PlotData::PrintFig2Dx3(char *a, char *b, char *c) // vector->２次元で3�
 {
     fprintf(gp, "set key outside below\n\n");
     fprintf(gp, "p ");
-    fprintf(gp, " '-' pt 7 ps 1 lc rgb 'red' t 'notitle', ");
-    fprintf(gp, " '-' pt 7 ps 1 lc rgb 'blue' t 'notitle2', ");
-    fprintf(gp, " '-' pt 7 ps 1 lc rgb 'green' t 'notitle3' ");
+    fprintf(gp, " '-' pt 7 ps 1 lc rgb 'red' t \'%s\', ",a);
+    fprintf(gp, " '-' pt 7 ps 1 lc rgb 'blue' t \'%s\', ",b);
+    fprintf(gp, " '-' pt 7 ps 1 lc rgb 'green' t \'%s\' ",c);
     fprintf(gp, "\n");
     for (int i = 0; i < Vdata.size(); i++)
     {
