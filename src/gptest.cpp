@@ -17,7 +17,7 @@ static char YLabelname[256 / 2] = "offset [μT]";
 
 int main(void)
 {
-    PlotData PD2; // defalut
+    PlotData PD2(1); // defalut 1->正方形　0->そのまま
     // PlotData PD(100.0,0.0,100.0,0.0);//範囲指定
 
     try
@@ -37,7 +37,7 @@ int main(void)
             z = x + y;
             // PD.saveData2D(x,y);
 
-            PD2.saveData2D(x, y);
+            PD2.SaveData2D(x, y);
             x++;
             if (y == 100)
             {
@@ -46,10 +46,14 @@ int main(void)
         }
         // PD.PrintFig2D();
         PD2.XYlabel(XLabelname, YLabelname);
-        PD2.settingtics(5,5);
+        PD2.SeTics(5,5);
         
         
-        PD2.PrintFig2D(gShutOff);
+        PD2.PrintFig2D();
+        while (!gShutOff)
+    {
+        usleep(1000);
+    }
 
     }
     catch (std::runtime_error const &error)

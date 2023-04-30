@@ -34,25 +34,26 @@ protected:
     char *zlabelname;
 
 public:
-    PlotData();
-    PlotData(double xmax, double xmin, double ymax, double ymin);//範囲設定
+    PlotData(bool square);
+    PlotData(double xmax, double xmin, double ymax, double ymin, bool square); // 範囲設定
     ~PlotData();
-    void settingtics(int xtics,int ytics);
-    void Xrangset(double xmax,double xmin);
-    void Yrangset(double ymax,double ymin);
-    void Zrangset(double zmax,double zmin);
+    void SeTics(int xtics, int ytics);
+    void Xrangset(double xmax, double xmin);
+    void Yrangset(double ymax, double ymin);
+    void Zrangset(double zmax, double zmin);
+    // void Datalabel(char *a,char *b,char *c);
 
-    //２次元
+    // ２次元
     void XYlabel(char *x, char *y);
-    void saveData2D(double Xdata, double Ydata);
-    void PrintFig2D(int gShutOff);
-    void saveData2Dx2(double Xdata, double Ydata, double Xdata2, double Ydata2);
-    void PrintFig2Dx2(int gShutOff);
-    void saveData2Dx3(double Xdata, double Ydata, double Xdata2, double Ydata2, double Xdata3, double Ydata3);
-    void PrintFig2Dx3(int gShutOff);
-    //３次元
+    void SaveData2D(double Xdata, double Ydata);
+    void PrintFig2D(void);
+    void SaveData2Dx2(double Xdata, double Ydata, double Xdata2, double Ydata2);
+    void PrintFig2Dx2(char *a, char *b);
+    void SaveData2Dx3(double Xdata, double Ydata, double Xdata2, double Ydata2, double Xdata3, double Ydata3);
+    void PrintFig2Dx3(char *a, char *b, char *c);
+    // ３次元
     void XYZlabel(char *x, char *y, char *z);
-    void saveData3D(double Xdata, double Ydata, double Zdata);
-    void PrintFig3D(int gShutOff);
+    void SaveData3D(double Xdata, double Ydata, double Zdata);
+    void PrintFig3D(void);
 };
 #endif // CREATFIG_HPP
