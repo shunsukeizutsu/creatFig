@@ -75,9 +75,11 @@ void PlotData::PrintFig2D() // vector->２次元で一つのグラフ生成
     printf("\x1b[32m\x1b[1m%s\x1b[39m\x1b[0m\n", "Start Plot PrintFigure 2D");
     fprintf(gp, "p ");
     fprintf(gp, " '-' pt 7 ps 1 lc rgb 'red' t \"\" ");
+    
     for (int i = 0; i < Vdata.size(); i++)
     {
         // printf("%f %f\n", Vdata[i].xdata, Vdata[i].ydata);
+
         fprintf(gp, "%f %f\n", Vdata[i].xdata, Vdata[i].ydata);
     }
     fprintf(gp, "e\n");
@@ -131,22 +133,33 @@ void PlotData::PrintFig2Dx3(char *a, char *b, char *c) // vector->２次元で3�
     fprintf(gp, " '-' pt 7 ps 1 lc rgb 'blue' t \'%s\', ",b);
     fprintf(gp, " '-' pt 7 ps 1 lc rgb 'green' t \'%s\' ",c);
     fprintf(gp, "\n");
+    double AveX=0;
+    double AveY=0;
+    double AveZ=0;
     for (int i = 0; i < Vdata.size(); i++)
     {
+        AveX += Vdata[i].ydata;
+        
         fprintf(gp, "%f %f\n", Vdata[i].xdata, Vdata[i].ydata);
     }
     fprintf(gp, "e\n");
 
     for (int j = 0; j < Vdata.size(); j++)
     {
+        AveY += Vdata[j].ydata2;
         fprintf(gp, "%f %f\n", Vdata[j].xdata2, Vdata[j].ydata2);
     }
     fprintf(gp, "e\n");
 
     for (int k = 0; k < Vdata.size(); k++)
     {
+        AveZ += Vdata[k].ydata3;
         fprintf(gp, "%f %f\n", Vdata[k].xdata3, Vdata[k].ydata3);
     }
+    AveX = AveX/Vdata.size();
+    AveY = AveY/Vdata.size();
+    AveZ = AveZ/Vdata.size();
+    printf("%f %f %f\n",AveX,AveY,AveZ);
     fprintf(gp, "e\n");
 
     fflush(gp);
