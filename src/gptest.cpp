@@ -12,8 +12,8 @@ static int gShutOff = 0;
 static void setSigInt(void);
 static void Terminate(void);
 
-static char XLabelname[256 / 2] = "xlabelll";
-static char YLabelname[256 / 2] = "table";
+static char XLabelname[256 / 2] = "count";
+static char YLabelname[256 / 2] = "offset [μT]";
 
 int main(void)
 {
@@ -45,18 +45,12 @@ int main(void)
             }
         }
         // PD.PrintFig2D();
-        PD2.settingtics(5,5);
         PD2.XYlabel(XLabelname, YLabelname);
+        PD2.settingtics(5,5);
         
-        PD2.PrintFig2D();
         
+        PD2.PrintFig2D(gShutOff);
 
-        // 
-
-        while (!gShutOff)
-        {
-            usleep(1000);
-        }
     }
     catch (std::runtime_error const &error)
     {

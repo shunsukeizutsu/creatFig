@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <vector>
+#include <signal.h>
 
 typedef struct Figuredata
 {
@@ -37,17 +38,21 @@ public:
     PlotData(double xmax, double xmin, double ymax, double ymin);//範囲設定
     ~PlotData();
     void settingtics(int xtics,int ytics);
+    void Xrangset(double xmax,double xmin);
+    void Yrangset(double ymax,double ymin);
+    void Zrangset(double zmax,double zmin);
+
     //２次元
     void XYlabel(char *x, char *y);
     void saveData2D(double Xdata, double Ydata);
-    void PrintFig2D(void);
+    void PrintFig2D(int gShutOff);
     void saveData2Dx2(double Xdata, double Ydata, double Xdata2, double Ydata2);
-    void PrintFig2Dx2(void);
+    void PrintFig2Dx2(int gShutOff);
     void saveData2Dx3(double Xdata, double Ydata, double Xdata2, double Ydata2, double Xdata3, double Ydata3);
-    void PrintFig2Dx3(void);
+    void PrintFig2Dx3(int gShutOff);
     //３次元
     void XYZlabel(char *x, char *y, char *z);
     void saveData3D(double Xdata, double Ydata, double Zdata);
-    void PrintFig3D(void);
+    void PrintFig3D(int gShutOff);
 };
 #endif // CREATFIG_HPP
