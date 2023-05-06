@@ -27,9 +27,9 @@ PlotData::~PlotData()
 }
 void PlotData::SaveFigure(char *fname)
 {
-    fprintf(gp,"set terminal postscript eps color enhanced\n");
-    fprintf(gp,"set out '%s.esp'\n",fname);
-    fprintf(gp,"replot\n");
+    fprintf(gp, "set terminal postscript eps color enhanced\n");
+    fprintf(gp, "set out '%s.esp'\n", fname);
+    fprintf(gp, "replot\n");
 }
 void PlotData::SeTics(double xtics, double ytics)
 {
@@ -65,12 +65,11 @@ void PlotData::PrintFig2D() // vector->２次元で一つのグラフ生成
 {
     printf("\x1b[32m\x1b[1m%s\x1b[39m\x1b[0m\n", "Start Plot PrintFigure 2D");
     fprintf(gp, "p ");
-    fprintf(gp, " '-' pt 5 ps 0.5 lc rgb 'red' t \"\" ");
-    
+    fprintf(gp, " '-' pt 5 lc rgb 'red' t \'\'");
+    fprintf(gp, "\n");
+
     for (int i = 0; i < Vdata.size(); i++)
     {
-        // printf("%f %f\n", Vdata[i].xdata, Vdata[i].ydata);
-
         fprintf(gp, "%f %f\n", Vdata[i].xdata, Vdata[i].ydata);
     }
     fprintf(gp, "e\n");
@@ -88,8 +87,9 @@ void PlotData::SaveData2Dx2(double Xdata, double Ydata, double Xdata2, double Yd
 void PlotData::PrintFig2Dx2(char *a, char *b) // vector->２次元で2つのグラフ生成
 {
     fprintf(gp, "p ");
-    fprintf(gp, " '-' pt 5 lc rgb 'red' t \'%s\', ",a);
-    fprintf(gp, " '-' pt 5 lc rgb 'blue' t \'%s\' ",b);
+    fprintf(gp, " '-' pt 5 lc rgb 'red' t \'%s\', ", a);
+    fprintf(gp, " '-' pt 5 lc rgb 'blue' t \'%s\' ", b);
+    fprintf(gp, "\n");
 
     for (int i = 0; i < Vdata.size(); i++)
     {
@@ -118,19 +118,19 @@ void PlotData::SaveData2Dx3(double Xdata, double Ydata, double Xdata2, double Yd
 }
 void PlotData::PrintFig2Dx3(char *a, char *b, char *c) // vector->２次元で3つのグラフ生成
 {
-    fprintf(gp,"set key horizontal\n");
+    fprintf(gp, "set key horizontal\n");
     fprintf(gp, "p ");
-    fprintf(gp, " '-' pt 5 lc rgb 'red' t \'%s\', ",a);
-    fprintf(gp, " '-' pt 5 lc rgb 'blue' t \'%s\', ",b);
-    fprintf(gp, " '-' pt 5 lc rgb 'green' t \'%s\' ",c);
+    fprintf(gp, " '-' pt 5 lc rgb 'red' t \'%s\', ", a);
+    fprintf(gp, " '-' pt 5 lc rgb 'blue' t \'%s\', ", b);
+    fprintf(gp, " '-' pt 5 lc rgb 'green' t \'%s\' ", c);
     fprintf(gp, "\n");
-    double AveX=0;
-    double AveY=0;
-    double AveZ=0;
+    double AveX = 0;
+    double AveY = 0;
+    double AveZ = 0;
     for (int i = 0; i < Vdata.size(); i++)
     {
         AveX += Vdata[i].ydata;
-        
+
         fprintf(gp, "%f %f\n", Vdata[i].xdata, Vdata[i].ydata);
     }
     fprintf(gp, "e\n");
@@ -147,10 +147,10 @@ void PlotData::PrintFig2Dx3(char *a, char *b, char *c) // vector->２次元で3�
         AveZ += Vdata[k].ydata3;
         fprintf(gp, "%f %f\n", Vdata[k].xdata3, Vdata[k].ydata3);
     }
-    AveX = AveX/Vdata.size();
-    AveY = AveY/Vdata.size();
-    AveZ = AveZ/Vdata.size();
-    printf("%f %f %f\n",AveX,AveY,AveZ);
+    AveX = AveX / Vdata.size();
+    AveY = AveY / Vdata.size();
+    AveZ = AveZ / Vdata.size();
+    printf("%f %f %f\n", AveX, AveY, AveZ);
     fprintf(gp, "e\n");
 
     fflush(gp);
