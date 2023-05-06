@@ -25,6 +25,8 @@ creatfig.cpp + creatfig.hpp : gnuplotでグラフを作成するクラス
                 PlotData(double xmax, double xmin, double yamx, double ymin)->コンストラクタの複数定義
                 Xrangset(),Yrangset(),Zrangset()
                 
+        -表示したグラフをespで保存する場合-
+                SaveFigure()->引数に名前
 
         -ラベル設定
                 XYlabel()

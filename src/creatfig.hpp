@@ -37,10 +37,11 @@ public:
     PlotData(bool square);
     PlotData(double xmax, double xmin, double ymax, double ymin, bool square); // 範囲設定
     ~PlotData();
-    void SeTics(int xtics, int ytics);
+    void SeTics(double xtics, double ytics);
     void Xrangset(double xmax, double xmin);
     void Yrangset(double ymax, double ymin);
     void Zrangset(double zmax, double zmin);
+    void SaveFigure(char *fname);
     // void Datalabel(char *a,char *b,char *c);
 
     // ２次元
