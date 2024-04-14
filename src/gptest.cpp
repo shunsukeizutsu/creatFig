@@ -5,6 +5,7 @@
 #include <iostream>
 #include "creatfig.hpp"
 #include <cstring>
+#include <unistd.h>
 
 using namespace std;
 

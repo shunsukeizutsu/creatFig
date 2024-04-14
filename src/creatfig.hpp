@@ -16,6 +16,7 @@ typedef struct Figuredata
     double xdata;
     double ydata;
     double zdata;
+    int status;
 
     double xdata2;
     double ydata2;
@@ -29,6 +30,10 @@ class PlotData
 protected:
     FILE *gp;
     std::vector<plot_data> Vdata;
+    std::vector<plot_data> FLOAT;
+    std::vector<plot_data> DGPS;
+    std::vector<plot_data> UNKNOWN;
+    std::vector<plot_data> SINGLE;
     char *xlabelname;
     char *ylabelname;
     char *zlabelname;
@@ -46,8 +51,10 @@ public:
 
     // ２次元
     void XYlabel(char *x, char *y);
+    void SaveData2D_GNSS(double xdata,double ydata,int status);
     void SaveData2D(double Xdata, double Ydata);
     void PrintFig2D(void);
+	void GNSS_PrintFig2D(void);
     void SaveData2Dx2(double Xdata, double Ydata, double Xdata2, double Ydata2);
     void PrintFig2Dx2(char *a, char *b);
     void SaveData2Dx3(double Xdata, double Ydata, double Xdata2, double Ydata2, double Xdata3, double Ydata3);
