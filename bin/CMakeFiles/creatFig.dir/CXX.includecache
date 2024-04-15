@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/shun330/creatFig/src/creatfig.cpp
+creatfig.hpp
+/home/shun330/creatFig/src/creatfig.hpp
+
+/home/shun330/creatFig/src/creatfig.hpp
+stdio.h
+-
+iostream
+-
+vector
+-
+signal.h
+-
+

@@ -37,6 +37,8 @@ protected:
     char *xlabelname;
     char *ylabelname;
     char *zlabelname;
+    double rate_fix;
+    int count = 0;
 
 public:
     PlotData(bool square);
@@ -54,7 +56,7 @@ public:
     void SaveData2D_GNSS(double xdata,double ydata,int status);
     void SaveData2D(double Xdata, double Ydata);
     void PrintFig2D(void);
-	void GNSS_PrintFig2D(void);
+	double GNSS_PrintFig2D(void);
     void SaveData2Dx2(double Xdata, double Ydata, double Xdata2, double Ydata2);
     void PrintFig2Dx2(char *a, char *b);
     void SaveData2Dx3(double Xdata, double Ydata, double Xdata2, double Ydata2, double Xdata3, double Ydata3);

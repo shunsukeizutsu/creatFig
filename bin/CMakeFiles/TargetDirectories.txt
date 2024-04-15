@@ -1,0 +1,3 @@
+/home/shun330/creatFig/bin/CMakeFiles/edit_cache.dir
+/home/shun330/creatFig/bin/CMakeFiles/rebuild_cache.dir
+/home/shun330/creatFig/bin/CMakeFiles/creatFig.dir
