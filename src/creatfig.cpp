@@ -65,7 +65,7 @@ void PlotData::SaveData2D_GNSS(double Xdata,double Ydata,int status)
 	tmp.xdata = Xdata;
 	tmp.ydata = Ydata;
 	tmp.status = status;
-	
+	count++;
 	switch (status)
 	{
 		case 0:
@@ -125,15 +125,15 @@ void PlotData::PrintFig2D() // vector->２次元で一つのグラフ生成
     fprintf(gp, "e\n");
     fflush(gp);
 }*/
-void PlotData::GNSS_PrintFig2D() // vector->２次元で一つのグラフ生成
+double PlotData::GNSS_PrintFig2D() // vector->２次元で一つのグラフ生成
 {
     printf("\x1b[32m\x1b[1m%s\x1b[39m\x1b[0m\n", "Start Plot PrintFigure 2D");
 	fprintf(gp,"p ");
-    fprintf(gp, " '-' pt 7 ps 0.3 lc rgb 'blue' t \'\', ");
-    fprintf(gp, " '-' pt 7 ps 0.3 lc rgb 'orange' t \'\', ");
-    fprintf(gp, " '-' pt 7 ps 0.3 lc rgb 'forest-green' t \'\', ");
-    fprintf(gp, " '-' pt 7 ps 0.3 lc rgb 'red' t \'\', ");
-    fprintf(gp, " '-' pt 7 ps 0.3 lc rgb 'black' t \'\' ");
+    fprintf(gp, " '-' pt 7 ps 0.2 lc rgb 'blue' t \'\', ");
+    fprintf(gp, " '-' pt 7 ps 0.2 lc rgb 'orange' t \'\', ");
+    fprintf(gp, " '-' pt 7 ps 0.2 lc rgb 'forest-green' t \'\', ");
+    fprintf(gp, " '-' pt 7 ps 0.2 lc rgb 'red' t \'\', ");
+    fprintf(gp, " '-' pt 7 ps 0.2 lc rgb 'black' t \'\' ");
     fprintf(gp,"\n");
     // データポイントのプロット
     for (int i = 0; i < Vdata.size(); i++)
@@ -168,6 +168,8 @@ void PlotData::GNSS_PrintFig2D() // vector->２次元で一つのグラフ生成
     
 
     fflush(gp);
+    rate_fix = (double)Vdata.size()/(double)count;
+    return rate_fix*100;
 }
 void PlotData::SaveData2Dx2(double Xdata, double Ydata, double Xdata2, double Ydata2) // プロットしたい2つのデータ->vector
 {

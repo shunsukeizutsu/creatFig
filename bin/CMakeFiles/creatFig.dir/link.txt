@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/creatFig.dir/src/gptest.cpp.o CMakeFiles/creatFig.dir/src/creatfig.cpp.o  -o creatFig 
