@@ -97,7 +97,7 @@ void PlotData::PrintFig2D() // vector->２次元で一つのグラフ生成
 {
     printf("\x1b[32m\x1b[1m%s\x1b[39m\x1b[0m\n", "Start Plot PrintFigure 2D");
     fprintf(gp, "p ");
-    fprintf(gp, " '-' pt 7 ps 0.5 lc rgb 'red' t \'\'");
+    fprintf(gp, " '-' pt 7 ps 0.1 lc rgb 'blue' t \'Angvel\'");
     fprintf(gp, "\n");
 
     for (int i = 0; i < Vdata.size(); i++)
