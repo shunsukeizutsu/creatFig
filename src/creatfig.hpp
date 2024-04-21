@@ -53,7 +53,7 @@ public:
 
     // ２次元
     void XYlabel(char *x, char *y);
-    void SaveData2D_GNSS(double xdata,double ydata,int status);
+    void SaveData_GNSS(double Xdata, double Ydata, double Zdata, int status);
     void SaveData2D(double Xdata, double Ydata);
     void PrintFig2D(void);
 	double GNSS_PrintFig2D(void);
@@ -65,5 +65,6 @@ public:
     void XYZlabel(char *x, char *y, char *z);
     void SaveData3D(double Xdata, double Ydata, double Zdata);
     void PrintFig3D(void);
+    void GNSS_PrintFig3D(void);
 };
 #endif // CREATFIG_HPP
