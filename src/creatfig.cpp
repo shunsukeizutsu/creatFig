@@ -97,7 +97,7 @@ void PlotData::PrintFig2D() // vector->２次元で一つのグラフ生成
 {
     printf("\x1b[32m\x1b[1m%s\x1b[39m\x1b[0m\n", "Start Plot PrintFigure 2D");
     fprintf(gp, "p ");
-    fprintf(gp, " '-' pt 7 ps 0.1 lc rgb 'blue' t \'Angvel\'");
+    fprintf(gp, " '-' pt 7 ps 0.5 lc rgb 'blue' t \'\'");
     fprintf(gp, "\n");
 
     for (int i = 0; i < Vdata.size(); i++)
@@ -129,11 +129,11 @@ double PlotData::GNSS_PrintFig2D() // vector->２次元で一つのグラフ生�
 {
     printf("\x1b[32m\x1b[1m%s\x1b[39m\x1b[0m\n", "Start Plot PrintFigure 2D");
     fprintf(gp, "p ");
-    fprintf(gp, " '-' pt 7 ps 0.2 lc rgb 'blue' t \'\', ");
-    fprintf(gp, " '-' pt 7 ps 0.2 lc rgb 'orange' t \'\', ");
-    fprintf(gp, " '-' pt 7 ps 0.2 lc rgb 'forest-green' t \'\', ");
-    fprintf(gp, " '-' pt 7 ps 0.2 lc rgb 'red' t \'\', ");
-    fprintf(gp, " '-' pt 7 ps 0.2 lc rgb 'black' t \'\' ");
+    fprintf(gp, " '-' pt 7 ps 0.2 lc rgb 'blue' t \'FIX\', ");
+    fprintf(gp, " '-' pt 7 ps 0.2 lc rgb 'orange' t \'FLOAT\', ");
+    fprintf(gp, " '-' pt 7 ps 0.2 lc rgb 'forest-green' t \'DGPS\', ");
+    fprintf(gp, " '-' pt 7 ps 0.2 lc rgb 'red' t \'SINGLE\', ");
+    fprintf(gp, " '-' pt 7 ps 0.2 lc rgb 'black' t \'UNKNOWN\' ");
     fprintf(gp, "\n");
     // データポイントのプロット
     for (int i = 0; i < Vdata.size(); i++)
