@@ -211,6 +211,70 @@ void PlotData::SaveData2Dx3(double Xdata, double Ydata, double Xdata2, double Yd
     tmp.ydata3 = Ydata3;
     Vdata.push_back(tmp);
 }
+void PlotData::SaveData2Dx3_1(double Xdata,double Ydata)
+{
+	plot_data tmp;
+	tmp.xdata = Xdata;
+	tmp.ydata = Ydata;
+	Vdata.push_back(tmp);
+}
+void PlotData::SaveData2Dx3_2(double Xdata,double Ydata)
+{
+	plot_data tmp2;
+	tmp2.xdata = Xdata;
+	tmp2.ydata = Ydata;
+	Vdata2.push_back(tmp2);
+}
+void PlotData::SaveData2Dx3_3(double Xdata,double Ydata)
+{
+	plot_data tmp3;
+	tmp3.xdata = Xdata;
+	tmp3.ydata = Ydata;
+	Vdata3.push_back(tmp3);
+}
+void PlotData::SaveData2Dx3_4(double Xdata,double Ydata)
+{
+	plot_data tmp4;
+	tmp4.xdata = Xdata;
+	tmp4.ydata = Ydata;
+	Vdata4.push_back(tmp4);
+}
+void PlotData::PrintFig2Dx3_123() // vector->２次元で一つのグラフ生成
+{
+    printf("\x1b[32m\x1b[1m%s\x1b[39m\x1b[0m\n", "Start Plot PrintFigure 2D");
+    fprintf(gp, "p ");
+    fprintf(gp, " '-' pt 7 ps 1 lc rgb 'blue' t \'localizer\', ");
+    fprintf(gp, " '-' w lp pt 1 ps 0.5 lc rgb 'orange' t \'odm_global\', ");
+    fprintf(gp, " '-' w lp pt 5 ps 1 lc rgb 'forest-green' t \'ndt\', ");
+    fprintf(gp, " '-' pt 7 ps 1 lc rgb 'red' t \'gnss\'");
+    fprintf(gp, "\n");
+    // データポイントのプロット
+    for (int i = 0; i < Vdata.size(); i++)
+    {
+        fprintf(gp, "%f %f\n", Vdata[i].xdata, Vdata[i].ydata);
+    }
+    fprintf(gp, "e\n");
+
+    for (int i = 0; i < Vdata2.size(); i++)
+    {
+        fprintf(gp, "%f %f\n", Vdata2[i].xdata, Vdata2[i].ydata);
+    }
+    fprintf(gp, "e\n");
+
+    for (int i = 0; i < Vdata3.size(); i++)
+    {
+        fprintf(gp, "%f %f\n", Vdata3[i].xdata, Vdata3[i].ydata);
+    }
+    fprintf(gp, "e\n");
+
+    for (int i = 0; i < Vdata4.size(); i++)
+    {
+        fprintf(gp, "%f %f\n", Vdata4[i].xdata, Vdata4[i].ydata);
+    }
+    fprintf(gp, "e\n");
+
+    fflush(gp);
+}	
 void PlotData::PrintFig2Dx3(char *a, char *b, char *c) // vector->２次元で3つのグラフ生成
 {
     fprintf(gp, "set key horizontal\n");

@@ -34,6 +34,10 @@ protected:
     std::vector<plot_data> DGPS;
     std::vector<plot_data> UNKNOWN;
     std::vector<plot_data> SINGLE;
+    std::vector<plot_data> Vdata2;
+    std::vector<plot_data> Vdata3;
+	std::vector<plot_data> Vdata4;
+
     char *xlabelname;
     char *ylabelname;
     char *zlabelname;
@@ -60,6 +64,11 @@ public:
     void SaveData2Dx2(double Xdata, double Ydata, double Xdata2, double Ydata2);
     void PrintFig2Dx2(char *a, char *b);
     void SaveData2Dx3(double Xdata, double Ydata, double Xdata2, double Ydata2, double Xdata3, double Ydata3);
+    void SaveData2Dx3_1(double Xdata,double Ydata);
+    void SaveData2Dx3_2(double Xdata,double Ydata);
+    void SaveData2Dx3_3(double Xdata,double Ydata);
+    void SaveData2Dx3_4(double Xdata,double Ydata);
+    void PrintFig2Dx3_123();
     void PrintFig2Dx3(char *a, char *b, char *c);
     // ３次元
     void XYZlabel(char *x, char *y, char *z);
