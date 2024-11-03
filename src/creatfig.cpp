@@ -274,6 +274,28 @@ void PlotData::PrintFig2Dx3_123() // vector->２次元で一つのグラフ生�
     fprintf(gp, "e\n");
 
     fflush(gp);
+}
+void PlotData::PrintFig2Dx3() // vector->２次元で一つのグラフ生成
+{
+    printf("\x1b[32m\x1b[1m%s\x1b[39m\x1b[0m\n", "Start Plot PrintFigure 2D");
+    fprintf(gp, "p ");
+    fprintf(gp, " '-' pt 7 ps 0.5 lc rgb 'blue' t \'wp1\', ");
+    fprintf(gp, " '-' pt 5 ps 0.5 lc rgb 'red' t \'wp2\'");
+    fprintf(gp, "\n");
+    // データポイントのプロット
+    for (int i = 0; i < Vdata.size(); i++)
+    {
+        fprintf(gp, "%f %f\n", Vdata[i].xdata, Vdata[i].ydata);
+    }
+    fprintf(gp, "e\n");
+
+    for (int i = 0; i < Vdata2.size(); i++)
+    {
+        fprintf(gp, "%f %f\n", Vdata2[i].xdata, Vdata2[i].ydata);
+    }
+    fprintf(gp, "e\n");
+
+    fflush(gp);
 }	
 void PlotData::PrintFig2Dx3(char *a, char *b, char *c) // vector->２次元で3つのグラフ生成
 {

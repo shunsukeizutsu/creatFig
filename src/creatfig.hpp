@@ -69,6 +69,7 @@ public:
     void SaveData2Dx3_3(double Xdata,double Ydata);
     void SaveData2Dx3_4(double Xdata,double Ydata);
     void PrintFig2Dx3_123();
+    void PrintFig2Dx3();// vector->２次元で一つのグラフ生成
     void PrintFig2Dx3(char *a, char *b, char *c);
     // ３次元
     void XYZlabel(char *x, char *y, char *z);
