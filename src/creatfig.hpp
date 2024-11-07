@@ -64,10 +64,10 @@ public:
     void SaveData2Dx2(double Xdata, double Ydata, double Xdata2, double Ydata2);
     void PrintFig2Dx2(char *a, char *b);
     void SaveData2Dx3(double Xdata, double Ydata, double Xdata2, double Ydata2, double Xdata3, double Ydata3);
-    void SaveData2Dx3_1(double Xdata,double Ydata);
-    void SaveData2Dx3_2(double Xdata,double Ydata);
-    void SaveData2Dx3_3(double Xdata,double Ydata);
-    void SaveData2Dx3_4(double Xdata,double Ydata);
+    void SaveData2Dx3_1(int status,double Xdata,double Ydata);
+    void SaveData2Dx3_2(int status,double Xdata,double Ydata);
+    void SaveData2Dx3_3(int status,double Xdata,double Ydata);
+    void SaveData2Dx3_4(int status,double Xdata,double Ydata);
     void PrintFig2Dx3_123();
     void PrintFig2Dx3();// vector->２次元で一つのグラフ生成
     void PrintFig2Dx3(char *a, char *b, char *c);

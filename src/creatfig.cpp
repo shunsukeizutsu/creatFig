@@ -211,32 +211,36 @@ void PlotData::SaveData2Dx3(double Xdata, double Ydata, double Xdata2, double Yd
     tmp.ydata3 = Ydata3;
     Vdata.push_back(tmp);
 }
-void PlotData::SaveData2Dx3_1(double Xdata,double Ydata)
+void PlotData::SaveData2Dx3_1(int status,double Xdata,double Ydata)
 {
 	plot_data tmp;
 	tmp.xdata = Xdata;
 	tmp.ydata = Ydata;
+	tmp.status = status;
 	Vdata.push_back(tmp);
 }
-void PlotData::SaveData2Dx3_2(double Xdata,double Ydata)
+void PlotData::SaveData2Dx3_2(int status,double Xdata,double Ydata)
 {
 	plot_data tmp2;
 	tmp2.xdata = Xdata;
 	tmp2.ydata = Ydata;
+	tmp2.status = status;
 	Vdata2.push_back(tmp2);
 }
-void PlotData::SaveData2Dx3_3(double Xdata,double Ydata)
+void PlotData::SaveData2Dx3_3(int status,double Xdata,double Ydata)
 {
 	plot_data tmp3;
 	tmp3.xdata = Xdata;
 	tmp3.ydata = Ydata;
+	tmp3.status = status;
 	Vdata3.push_back(tmp3);
 }
-void PlotData::SaveData2Dx3_4(double Xdata,double Ydata)
+void PlotData::SaveData2Dx3_4(int status,double Xdata,double Ydata)
 {
 	plot_data tmp4;
 	tmp4.xdata = Xdata;
 	tmp4.ydata = Ydata;
+	tmp4.status = status;
 	Vdata4.push_back(tmp4);
 }
 void PlotData::PrintFig2Dx3_123() // vector->２次元で一つのグラフ生成
@@ -275,28 +279,59 @@ void PlotData::PrintFig2Dx3_123() // vector->２次元で一つのグラフ生�
 
     fflush(gp);
 }
-void PlotData::PrintFig2Dx3() // vector->２次元で一つのグラフ生成
-{
+void PlotData::PrintFig2Dx3() {
     printf("\x1b[32m\x1b[1m%s\x1b[39m\x1b[0m\n", "Start Plot PrintFigure 2D");
-    fprintf(gp, "p ");
-    fprintf(gp, " '-' pt 7 ps 0.5 lc rgb 'blue' t \'wp1\', ");
-    fprintf(gp, " '-' pt 5 ps 0.5 lc rgb 'red' t \'wp2\'");
-    fprintf(gp, "\n");
-    // データポイントのプロット
-    for (int i = 0; i < Vdata.size(); i++)
-    {
-        fprintf(gp, "%f %f\n", Vdata[i].xdata, Vdata[i].ydata);
-    }
-    fprintf(gp, "e\n");
 
-    for (int i = 0; i < Vdata2.size(); i++)
-    {
-        fprintf(gp, "%f %f\n", Vdata2[i].xdata, Vdata2[i].ydata);
-    }
-    fprintf(gp, "e\n");
+    // Gnuplot コマンドを設定
+    fprintf(gp,"p ");
+    fprintf(gp, "'-' w lp pt 7 ps 0.5 lc rgb 'blue' t 'wp1', ");
+    fprintf(gp, "'-' w lp pt 1 ps 0.5 lc rgb 'red' t 'wp2', ");
+    fprintf(gp, "'-' w lp pt 2 ps 0.5 lc rgb 'green' t 'wp3', ");
+    fprintf(gp, "'-' w lp pt 3 ps 0.5 lc rgb 'black' t 'wp4'\n");
 
+    // Vdata のデータポイントのプロット
+    for (int i = 0; i < Vdata.size(); i++) {
+        fprintf(gp, "%lf %lf\n", Vdata[i].xdata, Vdata[i].ydata);
+    }
+    fprintf(gp, "e\n");  // Vdataのデータ入力終了
+
+    // Vdata2 のデータポイントのプロット
+    for (int i = 0; i < Vdata2.size(); i++) {
+        fprintf(gp, "%lf %lf\n", Vdata2[i].xdata, Vdata2[i].ydata);
+    }
+    fprintf(gp, "e\n");  // Vdata2のデータ入力終了
+
+    // Vdata3 のデータポイントのプロット
+    for (int i = 0; i < Vdata3.size(); i++) {
+        fprintf(gp, "%lf %lf\n", Vdata3[i].xdata, Vdata3[i].ydata);
+    }
+    fprintf(gp, "e\n");  // Vdata3のデータ入力終了
+
+    // Vdata4 のデータポイントのプロット
+    for (int i = 0; i < Vdata4.size(); i++) {
+        fprintf(gp, "%lf %lf\n", Vdata4[i].xdata, Vdata4[i].ydata);
+    }
+    fprintf(gp, "e\n");  // Vdata4のデータ入力終了
+
+    // 各データポイントに対するラベル設定
+    for (int i = 0; i < Vdata.size(); i++) {
+        fprintf(gp, "set label \"%d\" at %lf,%lf\n", Vdata[i].status, Vdata[i].xdata, Vdata[i].ydata);
+    }
+    for (int i = 0; i < Vdata2.size(); i++) {
+        fprintf(gp, "set label \"%d\" at %lf,%lf\n", Vdata2[i].status, Vdata2[i].xdata, Vdata2[i].ydata);
+    }
+    for (int i = 0; i < Vdata3.size(); i++) {
+        fprintf(gp, "set label \"%d\" at %lf,%lf\n", Vdata3[i].status, Vdata3[i].xdata, Vdata3[i].ydata);
+    }
+    for (int i = 0; i < Vdata4.size(); i++) {
+        fprintf(gp, "set label \"%d\" at %lf,%lf\n", Vdata4[i].status, Vdata4[i].xdata, Vdata4[i].ydata);
+    }
+
+    // 最後にフラッシュ
     fflush(gp);
-}	
+}
+
+
 void PlotData::PrintFig2Dx3(char *a, char *b, char *c) // vector->２次元で3つのグラフ生成
 {
     fprintf(gp, "set key horizontal\n");
